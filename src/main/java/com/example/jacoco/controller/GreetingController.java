@@ -1,1 +1,26 @@
+package com.example.jacoco.controller;
 
+import com.example.jacoco.service.GreetingService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class GreetingController {
+
+    private final GreetingService greetingService;
+
+    public GreetingController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
+    @GetMapping("/greet")
+    public String greet(@RequestParam(required = false) String name) {
+        return greetingService.greet(name);
+    }
+
+    @GetMapping("/add")
+    public int add(@RequestParam int a, @RequestParam int b) {
+        return greetingService.add(a, b);
+    }
+}
